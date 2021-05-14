@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+
+
+
+    tese-dataapi:
+        container_name: tese-dataapi
+        image: ryzonpt1/tese-dataapi:latest
+        ports: 
+            - "3000:3000"
+        networks: 
+            - backend
+
+    tese-interface:
+        depends_on: 
+            - "tese-dataapi"
+        container_name: tese-interface
+        image: ryzonpt1/tese-interface:latest
+        ports: 
+            - "80:80"
+        networks: 
+            - backend
+            
+
+
+networks:
+    backend:
